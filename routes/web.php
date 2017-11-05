@@ -12,5 +12,6 @@
 */
 
 Route::get('/', function () {
-    return view('frontend.index');
+    return view('backend.login.login');
 });
+Route::post('/', 'Auth/LoginController@postLogin')->name('login');
