@@ -21,11 +21,23 @@
 <div class="middle-box text-center loginscreen  animated fadeInDown">
     <div>
         <form method="post" class="m-t" role="form" action="{{ route('login') }}">
+            {{ csrf_field() }}
+            @if(session('msg'))
+                <span class="text-danger">
+                {{ session('msg') }}
+            </span>
+            @endif
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Username" required="">
+                <input type="text" name="username" class="form-control" placeholder="Username" >
+                @if(asset($errors->first('username')))
+                    <span class="text-danger">{{$errors->first('username')}}</span>
+                @endif
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="Password" required="">
+                <input type="password" name="password" class="form-control" placeholder="Password" >
+                @if(asset($errors->first('password')))
+                    <span class="text-danger">{{$errors->first('password')}}</span>
+                @endif
             </div>
             <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
         </form>
